@@ -36,6 +36,12 @@ struct UserProfile {
 };
 
 int main(int argc, char const* argv[]) {
+    if (!(argc == 1 || argc == 4 || argc == 5)) {
+        cerr << "Usage: " << argv[0]
+             << " [name email username [profile_picture]]" << endl;
+        return 1;
+    }
+
     UserProfile profile("Demo User", "demo@example.com", "demo-user");
 
     if (argc == 4 || argc == 5) {
@@ -44,12 +50,6 @@ int main(int argc, char const* argv[]) {
 
     if (argc == 5) {
         profile.updateProfilePicture(argv[4]);
-    }
-
-    if (!(argc == 1 || argc == 4 || argc == 5)) {
-        cerr << "Usage: " << argv[0]
-             << " [name email username [profile_picture]]" << endl;
-        return 1;
     }
 
     profile.display();
