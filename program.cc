@@ -6,14 +6,47 @@
  */
 
 #include <iostream>
-#include <iomanip>
-#include <cstdlib>
+#include <string>
 using namespace std;
 
-///Constants and function prototypes
+struct UserProfile {
+    string name;
+    string email;
+    string username;
+    string profilePicture;
 
-int main(int argc, char const *argv[]) {
+    UserProfile(const string& profileName, const string& profileEmail,
+                const string& profileUsername,
+                const string& picture = "default-profile.png")
+        : name(profileName), email(profileEmail), username(profileUsername),
+          profilePicture(picture) {}
 
-    cout << "Goodbye World"<< endl;
+    void display() const {
+        cout << "User Profile" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Email: " << email << endl;
+        cout << "Username: " << username << endl;
+        cout << "Profile Picture: " << profilePicture << endl;
+    }
+};
+
+int main(int argc, char const* argv[]) {
+    if (!(argc == 1 || argc == 4 || argc == 5)) {
+        cerr << "Usage: " << argv[0]
+             << " [name email username [profile_picture]]" << endl;
+        return 1;
+    }
+
+    UserProfile profile("Demo User", "demo@example.com", "demo-user");
+
+    if (argc == 4) {
+        profile = UserProfile(argv[1], argv[2], argv[3]);
+    }
+
+    if (argc == 5) {
+        profile = UserProfile(argv[1], argv[2], argv[3], argv[4]);
+    }
+
+    profile.display();
     return 0;
 } /// main
