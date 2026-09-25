@@ -15,8 +15,9 @@ struct UserProfile {
     string username;
     string profilePicture;
 
-    UserProfile(string profileName, string profileEmail, string profileUsername,
-                string picture = "default-profile.png")
+    UserProfile(const string& profileName, const string& profileEmail,
+                const string& profileUsername,
+                const string& picture = "default-profile.png")
         : name(profileName), email(profileEmail), username(profileUsername),
           profilePicture(picture) {}
 
@@ -44,12 +45,12 @@ int main(int argc, char const* argv[]) {
 
     UserProfile profile("Demo User", "demo@example.com", "demo-user");
 
-    if (argc == 4) {
+    if (argc == 4 || argc == 5) {
         profile = UserProfile(argv[1], argv[2], argv[3]);
     }
 
     if (argc == 5) {
-        profile = UserProfile(argv[1], argv[2], argv[3], argv[4]);
+        profile.updateProfilePicture(argv[4]);
     }
 
     profile.display();
