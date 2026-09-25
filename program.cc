@@ -44,12 +44,12 @@ int main(int argc, char const* argv[]) {
 
     UserProfile profile("Demo User", "demo@example.com", "demo-user");
 
-    if (argc == 4 || argc == 5) {
+    if (argc == 4) {
         profile = UserProfile(argv[1], argv[2], argv[3]);
     }
 
     if (argc == 5) {
-        profile.updateProfilePicture(argv[4]);
+        profile = UserProfile(argv[1], argv[2], argv[3], argv[4]);
     }
 
     profile.display();
